@@ -15,9 +15,17 @@
 
   {% if articles %}
     {% for article in articles %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{article.title}}</h1>
-      </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="align-items: center;">
+      <h2 class="text-center"> <b> Title: {{ article.title }} </b> </h2>
+      <h3 class="text-center"> {{ article.post }} </h3>
+      <h2 class="text-center">  <b> Editor: {{ article.editor }} </b> </h2>
+    </div>
+    <!--Display news Article images  -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <img src="{{article.article_image.url}}" class="img-responsive" alt="Image" style="border-radius: 25px;">
+    </div>
+
+  </div>
     {% endfor %}
   {% endif %}
   </div>

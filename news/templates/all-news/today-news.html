@@ -10,8 +10,14 @@
   
     <div class="row">
       <!-- displaying News articles -->
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="align-items: center;">
+        <h2 class="text-center"> <b> Title: {{ news_item.title }} </b> </h2>
+        <h3 class="text-center"> {{ news_item.post }} </h3>
+        <h2 class="text-center">  <b> Editor: {{ news_item.editor }} </b> </h2>
+      </div>
+      <!--Display news Article images  -->
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <h2 class="text-center"> {{ news_item.title }} </h2>
+        <img src="{{news_item.article_image.url}}" class="img-responsive" alt="Image" style="border-radius: 25px;">
       </div>
   
     </div>
