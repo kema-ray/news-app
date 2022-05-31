@@ -20,6 +20,7 @@ from django.urls import re_path,include
 urlpatterns = [
     # path('admin/', admin.site.urls),
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'',include('news.urls'))
-    # re_path(r'^news/',include('news.urls'))  
+    re_path(r'',include('news.urls')),
+    # re_path(r'^news/',include('news.urls'))
+    re_path(r'^accounts/', include('registration.backends.simple.urls')),  
 ]
