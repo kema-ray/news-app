@@ -21,6 +21,6 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     re_path(r'^admin/', admin.site.urls),
     re_path(r'',include('news.urls')),
-    # re_path(r'^news/',include('news.urls'))
-    re_path(r'^accounts/', include('registration.backends.simple.urls')),  
+    re_path(r'^accounts/', include('django_registration.backends.one_step.urls')),
+    re_path(r'^accounts/', include('django.contrib.auth.urls')),  
 ]
