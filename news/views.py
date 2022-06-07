@@ -4,7 +4,7 @@ from django.http import HttpResponse
 import datetime as dt
 from .models import *
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import NewsLetterForm
+from .forms import NewsLetterForm,NewArticleForm
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -23,7 +23,7 @@ def news_today(request):
             email = form.cleaned_data['email']
             recipient = NewsLetterRecipients(name = name,email =email)
             recipient.save()
-            send_welcome_email(name,email)
+            # send_welcome_email(name,email)
             HttpResponseRedirect('news_today')
     else:
         form = NewsLetterForm()
@@ -78,3 +78,17 @@ def article(request,article_id):
         raise Http404()
     return render(request,"all-news/article.html", {"article":article})
 
+@login_required(login_url='/accounts/login/')
+def new_article(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.editor = current_user
+            article.save()
+        return redirect(news_today)
+
+    else:
+        form = NewArticleForm()
+    return render(request, 'new_article.html', {"form": form})
